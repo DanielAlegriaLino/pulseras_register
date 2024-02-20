@@ -1,0 +1,9 @@
+{
+    "workbench.colorCustomizations": {
+        "editorError.foreground": "#ff000088",
+        "editorWarning.foreground": "#ffe60033",
+        "editorInfo.foreground": "#00ff0088",
+        "minimap.background": "#00000000",
+        "scrollbar.shadow": "#00000000"
+    }
+}
