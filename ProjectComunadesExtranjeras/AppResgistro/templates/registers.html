@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block title %}
+        <title>Registrados</title>
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="static/styles/registers.css">
+{% endblock %}
+
+{% block content %}
+<main class="text-center">
+    <h1>Registrados</h1>
+    <section class="container my-5">
+        <div class="row d-flex"><h4>Buscar Registro</h4></div>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-8">
+                <form action="" role="search" class="d-flex mx-5">
+                    <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
+                    <button class="btn btn-outline-success" type="submit">Buscar</button>
+                </form>
+            </div>
+            <div class="col"></div>
+        </div>
+    </section>
+    <section class="container my-3">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Pais</th>
+                    <th>Modalidad</th>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Tipo de Brazalete</th>
+                    <th>Guardar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>#</td>
+                    <td>Nombre</td>
+                    <td>Pais</td>
+                    <td>Modalidad</td>
+                    <td>Fecha</td>
+                    <td>Hora</td>
+                    <form action="">
+                        <td>
+                            <Select class="form-select text-center tipo-pulsera" aria-label="tipo-pulsera">
+                                <option selected value="0">Tipo de Pulsera</option>
+                                <option value="1">Staff</option>
+                                <option value="2">Expositor</option>
+                                <option value="3">Colaborador</option>
+                                <option value="4">VIP</option>
+                                <option value="5">Artista</option>
+                                <option value="6">Comunicación</option>
+                            </Select>
+                        </td>
+                        <td>
+                            <button class="btn btn-primary" type="submit">Guardar</button>
+                        </td>
+                    </form>
+                </tr>
+                <tr>
+                    <td>#</td>
+                    <td>Nombre</td>
+                    <td>Pais</td>
+                    <td>Modalidad</td>
+                    <td>Fecha</td>
+                    <td>Hora</td>
+                    <form action="">
+                        <td>
+                            <Select class="form-select text-center tipo-pulsera" aria-label="tipo-pulsera">
+                                <option selected value="0">Tipo de Pulsera</option>
+                                <option value="1">Staff</option>
+                                <option value="2">Expositor</option>
+                                <option value="3">Colaborador</option>
+                                <option value="4">VIP</option>
+                                <option value="5">Artista</option>
+                                <option value="6">Comunicación</option>
+                            </Select>
+                        </td>
+                        <td>
+                            <button class="btn btn-primary" type="submit">Guardar</button>
+                        </td>
+                    </form>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="static/js/registers.js"></script>
+{% endblock %}
