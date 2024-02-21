@@ -87,6 +87,17 @@ DATABASES = {
     #     'HOST': 'comunidades-extranjeras.database.windows.net',
     #     'PORT': '1433', # Puerto predeterminado de PostgreSQL
     # }
+    # 'default': {
+    #     'ENGINE': 'sql_server.pyodbc',
+    #     'NAME': 'ComunidadesExtranjeras',
+    #     'USER': 'ErickA',
+    #     'PASSWORD': 'hysnax-saccu2-meXjih',
+    #     'HOST': 'comunidades-extranjeras.database.windows.net',
+    #     'PORT': '1433',
+    #     'OPTIONS': {
+    #         'driver': 'ODBC Driver 13 for SQL Server',
+    #     },
+    # },
 }
 
 
@@ -125,7 +136,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
