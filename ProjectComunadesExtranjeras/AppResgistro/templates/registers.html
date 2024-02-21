@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
         <title>Registrados</title>
 {% endblock %}
 
 {% block styles %}
-    <link rel="stylesheet" href="static/styles/registers.css">
+    <link rel="stylesheet" href="{% static 'styles/registers.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -95,5 +96,5 @@
 {% endblock %}
 
 {% block scripts %}
-    <script src="static/js/registers.js"></script>
+    <script src="{% static 'js/registers.js' %}"></script>
 {% endblock %}
