@@ -1,0 +1,16 @@
+:root {
+    --font-color: #CEB280;
+    --background: #005A5A;
+}
+
+.navbar-custom {
+    background-color: var(--background);
+}
+
+.text-custom {
+    color: var(--font-color);
+}
+
+.btn-custom {
+    background: var(--font-color);
+}
