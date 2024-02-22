@@ -76,28 +76,16 @@ WSGI_APPLICATION = 'ProjectComunadesExtranjeras.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'bdcomext',
+        'USER': 'Erick',
+        'PASSWORD': 'xiCxyp-qezgi9-tuwkam',
+        'HOST': 'server-comunidadesextranjeras.postgres.database.azure.com',
+        'PORT': '5432',
+        'OPTIONS': {
+            'sslmode': 'require',
+        }
     }
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'ComunidadesExtranjeras',
-    #     'USER': 'ErickA',
-    #     'PASSWORD': 'hysnax-saccu2-meXjih',
-    #     'HOST': 'comunidades-extranjeras.database.windows.net',
-    #     'PORT': '1433', # Puerto predeterminado de PostgreSQL
-    # }
-    # 'default': {
-    #     'ENGINE': 'sql_server.pyodbc',
-    #     'NAME': 'ComunidadesExtranjeras',
-    #     'USER': 'ErickA',
-    #     'PASSWORD': 'hysnax-saccu2-meXjih',
-    #     'HOST': 'comunidades-extranjeras.database.windows.net',
-    #     'PORT': '1433',
-    #     'OPTIONS': {
-    #         'driver': 'ODBC Driver 13 for SQL Server',
-    #     },
-    # },
 }
 
 
