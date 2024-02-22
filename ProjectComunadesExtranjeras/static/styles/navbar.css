@@ -13,4 +13,13 @@
 
 .btn-custom {
     background: var(--font-color);
+    border-color: var(--font-color);
+    color: black;
+}
+
+.btn-custom:hover,
+.btn-custom:active {
+    color: var(--font-color);
+    border-color: var(--font-color);
+    background: var(--background);
 }
