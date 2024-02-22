@@ -40,13 +40,14 @@
                 </tr>
             </thead>
             <tbody>
+                {% for registro in registros %}
                 <tr>
-                    <td>#</td>
-                    <td class="test">Elias Eduardo Medina Santiago</td>
-                    <td>Pais</td>
-                    <td>Modalidad</td>
-                    <td>Fecha</td>
-                    <td>Hora</td>
+                    <td>{{ registro.nIdRegistro }}</td>
+                    <td>{{ registro.cNombreCompleto  }}</td>
+                    <td>{{ registro.cPaisEmpresa }}</td>
+                    <td>{{ registro.cModalidadActividad }}</td>
+                    <td>{{ registro.dFecha }}</td>
+                    <td>{{ registro.tHora }}</td>
                     <form action="">
                         <td>
                             <Select class="form-select text-center tipo-pulsera" aria-label="tipo-pulsera">
@@ -64,30 +65,7 @@
                         </td>
                     </form>
                 </tr>
-                <tr>
-                    <td>#</td>
-                    <td>Nombre</td>
-                    <td>Empresa</td>
-                    <td>Modalidad</td>
-                    <td>Fecha</td>
-                    <td>Hora</td>
-                    <form action="">
-                        <td>
-                            <Select class="form-select text-center tipo-pulsera" aria-label="tipo-pulsera">
-                                <option selected value="0">Tipo de Pulsera</option>
-                                <option value="1">Staff</option>
-                                <option value="2">Expositor</option>
-                                <option value="3">Colaborador</option>
-                                <option value="4">VIP</option>
-                                <option value="5">Artista</option>
-                                <option value="6">Comunicación</option>
-                            </Select>
-                        </td>
-                        <td>
-                            <button class="btn btn-primary save-btn" type="submit">Guardar</button>
-                        </td>
-                    </form>
-                </tr>
+                {% endfor %}
             </tbody>
         </table>
     </section>

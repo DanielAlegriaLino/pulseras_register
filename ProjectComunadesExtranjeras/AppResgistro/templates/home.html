@@ -1,7 +1,7 @@
 {% extends 'base.html' %} 
 
 {% block styles %}
-<title>Home</title>
+
 {% endblock %}
 
 {% block title %}
@@ -12,6 +12,7 @@
 <div>
   <ul>
     <li><a href="{% url 'registers' %}"> Registros </a></li>
+    <li><a href="{% url 'forms-register' %}"> Form </a></li>
   </ul>
 </div>
 {% endblock %} 

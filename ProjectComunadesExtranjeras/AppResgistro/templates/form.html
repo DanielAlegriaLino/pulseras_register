@@ -1,0 +1,53 @@
+{% extends 'base.html' %} 
+{% load static %}
+
+{% block styles %}
+    
+{% endblock %}
+
+{% block title %}
+<title>Registro</title>
+{% endblock %}
+
+{% block content %}
+<main class="container">
+    <section class="py-4 bg-white text-center mb-0">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h1 class="h1">Formulario de Registro</h1>
+                    <p class="lead text-muted">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem perspiciatis impedit rem enim dolore aliquam modi, necessitatibus animi odit! Natus dolore eius eaque minima autem cupiditate dolores, tempore beatae suscipit.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <form method="post" class="row">
+        {% csrf_token %}
+        <div class="col-6 mx-auto">
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre Completo</label>
+                {{ form.cNombreCompleto }}
+            </div>
+
+            <div class="mb-3">
+                <label for="pais" class="form-label">País o Empresa</label>
+                {{ form.cPaisEmpresa }}
+            </div>
+
+            <div class="mb-3">
+                <label for="modalidad" class="form-label">Modalidad</label>
+                {{ form.cModalidadActividad }}
+            </div>
+        </div>
+
+        <div class="col-12 d-flex justify-content-center">
+            <div>
+                <button type="submit" class="col-12 btn btn-custom">Enviar</button>
+            </div>
+        </div>
+    </form>
+</main>
+{% endblock %} 
+
+{% block scripts %} 
+{% endblock %}
