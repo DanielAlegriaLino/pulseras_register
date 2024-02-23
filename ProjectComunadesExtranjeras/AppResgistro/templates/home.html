@@ -1,7 +1,8 @@
 {% extends 'base.html' %} 
+{% load static %}
 
 {% block styles %}
-
+  <link rel="stylesheet" href="{% static 'styles/home.css' %}">
 {% endblock %}
 
 {% block title %}
@@ -9,12 +10,16 @@
 {% endblock %}
 
 {% block content %}
-<div>
-  <ul>
-    <li><a href="{% url 'registers' %}"> Registros </a></li>
-    <li><a href="{% url 'forms-register' %}"> Form </a></li>
-  </ul>
-</div>
+
+<main>
+  <div class="glass-wrapper d-flex justify-content-center flex-column align-items-center">
+    <img src="{% static 'img/Logo.webp' %}" height="80"  alt="" class="mb-4">
+    <a href="{% url 'forms-register' %}" class="my-2"><button class="btn">Registrar Visita</button></a>
+    <a href="{% url 'registers' %}" class="my-2"> <button class="btn">Asignar Brazalete</button></a>
+  </div>
+</main>
+
+
 {% endblock %} 
 
 {% block scripts %} 
