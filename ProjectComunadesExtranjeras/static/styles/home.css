@@ -30,7 +30,6 @@ main{
 }
 
 .glass-wrapper a{
-    color: rgb(176, 148, 98)!important;
     font-size: 1.5rem !important;
     background-color: rgb(176, 148, 98);
     border-radius: 10px;
