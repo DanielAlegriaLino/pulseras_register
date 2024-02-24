@@ -7,6 +7,11 @@ def home(request):
     return render(request, 'home.html')
     
 def registers(request):
+    nombre = request.GET.get("cNombreCompleto", None)
+    if(nombre):
+        print(nombre)
+        registros = t_registro.objects.filter(cNombreCompleto__contains=nombre)
+        return render(request, 'registers.html', {'registros': registros})
     registros = t_registro.objects.all()
     return render(request, 'registers.html', {'registros': registros})
 
