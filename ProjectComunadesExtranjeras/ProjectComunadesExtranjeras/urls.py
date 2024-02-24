@@ -11,4 +11,5 @@ urlpatterns = [
     path('registros/', views.registers, name="registers"),
     path('registros/<str:search>', views.registers, name="registers"),
     path('NuevoRegistro/', views.FormRegistro, name="forms-register"),
+    path('corte/', views.getSummary, name="getSummary"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
