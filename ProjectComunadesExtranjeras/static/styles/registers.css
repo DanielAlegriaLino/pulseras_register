@@ -12,6 +12,7 @@ select option[value="2"]{
 }
 select option[value="3"]{
     background: #56D95B;
+    color: black;
 }
 select option[value="4"]{
     background: #3AB4E3;
@@ -22,7 +23,7 @@ select option[value="5"]{
 }
 select option[value="6"]{
     background: #B406F2;
-    color: black;
+    color: #ffff;
 }
 
 .save-btn{
