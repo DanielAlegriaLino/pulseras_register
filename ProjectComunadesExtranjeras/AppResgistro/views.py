@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .forms import t_registroForm
 from .models import t_registro
@@ -14,6 +14,12 @@ def registers(request):
         registros = t_registro.objects.filter(cNombreCompleto__contains=nombre)
         return render(request, 'registers.html', {'registros': registros})
     registros = t_registro.objects.all()
+    if request.method == 'POST':
+        id_reg = request.POST.get('id_r')
+        n_braz = request.POST.get('n_bz')
+        registro_asignar = get_object_or_404(t_registro, nIdRegistro=id_reg)
+        registro_asignar.cBrazalete = n_braz
+        registro_asignar.save()
     return render(request, 'registers.html', {'registros': registros})
 
 def FormRegistro(request):
@@ -21,7 +27,7 @@ def FormRegistro(request):
         form = t_registroForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('registers')
+            return redirect('forms-register')
     else:
         form = t_registroForm()
     return render(request, 'form.html', {'form': form})
