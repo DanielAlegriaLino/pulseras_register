@@ -48,19 +48,21 @@
                     <td>{{ registro.cModalidadActividad }}</td>
                     <td>{{ registro.dFecha }}</td>
                     <td>{{ registro.tHora }}</td>
-                    <form action="">
+                    <form method="post">
+                        {% csrf_token %}
                         <td>
-                            <Select class="form-select text-center tipo-pulsera" aria-label="tipo-pulsera">
+                            <Select name="n_bz" class="form-select text-center tipo-pulsera" aria-label="tipo-pulsera">
                                 <option selected value="0">Tipo de Pulsera</option>
-                                <option value="1">Staff</option>
-                                <option value="2">Expositor</option>
-                                <option value="3">Colaborador</option>
-                                <option value="4">VIP</option>
-                                <option value="5">Artista</option>
-                                <option value="6">Comunicación</option>
+                                <option {% if registro.cBrazalete == 1 %}selected{% endif %} value="1">Staff</option>
+                                <option {% if registro.cBrazalete == 2 %}selected{% endif %} value="2">Expositor</option>
+                                <option {% if registro.cBrazalete == 3 %}selected{% endif %} value="3">Colaborador</option>
+                                <option {% if registro.cBrazalete == 4 %}selected{% endif %} value="4">VIP</option>
+                                <option {% if registro.cBrazalete == 5 %}selected{% endif %} value="5"value="5">Artista</option>
+                                <option {% if registro.cBrazalete == 6 %}selected{% endif %} value="6"value="6">Comunicación</option>
                             </Select>
                         </td>
                         <td>
+                            <input style="display: none;" type="text" name="id_r" id="id_r" value="{{ registro.nIdRegistro }}">
                             <button class="btn btn-primary save-btn" type="submit">Guardar</button>
                         </td>
                     </form>

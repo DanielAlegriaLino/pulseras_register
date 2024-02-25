@@ -1,4 +1,4 @@
-from django.db import models
+from django.db import models, connection
 
 class t_registro(models.Model):
     nIdRegistro = models.AutoField(primary_key=True)  
@@ -7,7 +7,7 @@ class t_registro(models.Model):
     cModalidadActividad = models.TextField()  
     dFecha = models.DateField(auto_now_add=True)  
     tHora = models.TimeField(auto_now_add=True)  
-    cBrazalete  = models.TextField()
+    cBrazalete  = models.IntegerField(default=0)
 
     class Meta:
         managed = False
