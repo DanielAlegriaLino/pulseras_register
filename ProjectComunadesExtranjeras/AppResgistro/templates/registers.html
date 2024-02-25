@@ -52,7 +52,7 @@
                         {% csrf_token %}
                         <td>
                             <Select name="n_bz" class="form-select text-center tipo-pulsera" aria-label="tipo-pulsera">
-                                <option selected value="0">Tipo de Pulsera</option>
+                                <option {% if registro.cBrazalete == 0 %}selected{% endif %} value="0">Tipo de Pulsera</option>
                                 <option {% if registro.cBrazalete == 1 %}selected{% endif %} value="1">Staff</option>
                                 <option {% if registro.cBrazalete == 2 %}selected{% endif %} value="2">Expositor</option>
                                 <option {% if registro.cBrazalete == 3 %}selected{% endif %} value="3">Colaborador</option>
