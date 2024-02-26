@@ -1,0 +1,79 @@
+@media print {
+    header {
+        display: none;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
+
+    body::before {
+        content: "Resumen";
+        display: block;
+        font-size: 24px;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: center;
+    }
+
+    .container-chart {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    canvas {
+        margin-top: 150px;
+    }
+
+    .print-info {
+        font-size: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 40px;
+    }
+
+    .print-header-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: inline-flex;
+        margin-right: 10px; 
+    }
+}
+
+@media screen {
+    .print-header-img {
+        display: none;
+    }
+
+    .print-info {
+        display: none;
+    }
+
+    table {
+        width: 80%;
+        margin: 20px auto;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: center;
+        border: 1px solid #ddd;
+    }
+}
