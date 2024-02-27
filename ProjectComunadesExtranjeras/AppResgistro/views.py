@@ -13,7 +13,7 @@ def registers(request):
         print(nombre)
         registros = t_registro.objects.filter(cNombreCompleto__contains=nombre)
         return render(request, 'registers.html', {'registros': registros})
-    registros = t_registro.objects.all()
+    registros = t_registro.objects.all().order_by('cBrazalete')
     if request.method == 'POST':
         id_reg = request.POST.get('id_r')
         n_braz = request.POST.get('n_bz')
@@ -26,7 +26,9 @@ def FormRegistro(request):
     if request.method == 'POST':
         form = t_registroForm(request.POST)
         if form.is_valid():
-            form.save()
+            NuevoRegistro = form.save(commit=False)
+            NuevoRegistro.nIdRegistro = Exclusiveid()
+            NuevoRegistro.save()
             return redirect('forms-register')
     else:
         form = t_registroForm()
@@ -76,6 +78,10 @@ def getSummary(request):
         'counts_percentages_colors':zip(counts,percentages, colores),
     })
     return HttpResponse("Summary")
+
+def Exclusiveid():
+    last_id = t_registro.objects.latest('nIdRegistro').nIdRegistro
+    return last_id + 1
     
     
     
