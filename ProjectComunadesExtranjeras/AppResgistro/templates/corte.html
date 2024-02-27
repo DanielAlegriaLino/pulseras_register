@@ -27,14 +27,16 @@
                 <th scope="col">Count</th>
                 <th scope="col">Percentage</th>
                 <th scope="col">Color</th>
+                <th scope="col">Brazalete</th>
             </tr>
         </thead>
         <tbody>
-            {% for count, percentage, color in counts_percentages_colors %}
+            {% for count, percentage, color, name in counts_percentages_colors %}
                 <tr>
                     <td>{{ count }}</td>
                     <td>{{ percentage }}</td>
                     <td>{{ color }}</td>
+                    <td>{{ name }}</td>
                 </tr>
             {% endfor %}
         </tbody>

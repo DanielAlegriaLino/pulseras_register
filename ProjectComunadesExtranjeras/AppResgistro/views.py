@@ -56,7 +56,7 @@ def getSummary(request):
         for value in value_look:
             cursor.execute(f'SELECT COUNT(*) FROM "t_registro" WHERE "cBrazalete" = {value}')
             count = cursor.fetchone()[0]
-            percentage = (count / entire) * 100
+            percentage = round((count / entire) * 100,2)
             counts.append(count)
             percentages.append(percentage)
            
@@ -73,9 +73,10 @@ def getSummary(request):
     print(entire)
     
     colores=["No asignado","Amarillo", "Naranja", "Verde", "Azul", "Rosa", "Morado"]
+    nombres = ["No asignado", "Staff", "Expositor", "Colaborador", "VIP", "Artista", "Comunicación"]
     return render(request, 'corte.html', {
         'total_count': entire,
-        'counts_percentages_colors':zip(counts,percentages, colores),
+        'counts_percentages_colors':zip(counts,percentages, colores, nombres),
     })
     return HttpResponse("Summary")
 
