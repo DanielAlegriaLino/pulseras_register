@@ -11,6 +11,10 @@
 
 {% block content %}
 <body>
+    <h1 class="text-center mt-5 mb-3 no-print">Resumen de Registros</h1>
+    <div class="btn-container text-center my-3 no-print">
+        <button class="btn btn-primary print-btn" onclick="window.print()">Imprimir</button>
+    </div>
     <img src="{% static 'img/Icono.webp' %}" class="me-3 print-header-img" width="40" height="60" alt="Logo">
 
     <div class="print-info">

@@ -1,4 +1,9 @@
 @media print {
+
+    .no-print{
+        display: none;
+    }
+
     header {
         display: none;
     }
@@ -57,6 +62,23 @@
 }
 
 @media screen {
+
+    .print-btn{
+        background: rgb(176, 148, 98);
+        border-color: rgb(176, 148, 98);
+    }
+
+    .print-btn:hover{
+        background-color: inherit;
+        border-color: rgb(176, 148, 98);
+        color: rgb(176, 148, 98);
+    }
+
+    .print-btn:active{
+        background: rgb(176, 148, 98)!important;
+        border-color: rgb(176, 148, 98)!important;
+    }
+
     .print-header-img {
         display: none;
     }
