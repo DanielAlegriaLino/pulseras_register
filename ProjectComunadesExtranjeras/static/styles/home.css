@@ -5,18 +5,13 @@ body{
 
 main{
     color: rgb(176, 148, 98)!important;
-    background-image: url('../img/alternativeBG.webp');
-    height: 100%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: bottom;
 }
 
 .glass-wrapper{
     height: 55%;
     width: 40%;
     left: 5%;
-    background:linear-gradient(135deg,rgba(255,255,255,0.1),rgba(255,255,255,0) );
+    background:linear-gradient(135deg,rgba(0,0,0,0.1),rgba(0,0,0,0) );
     backdrop-filter: blur(10px);
     box-shadow: inset 0 0 0 3000px rgba(150, 150, 150, 0.25);
     position: absolute;
@@ -29,20 +24,21 @@ main{
     font-size: 3rem;
 }
 
-.glass-wrapper a{
-    font-size: 1.5rem !important;
+main .btn{
+    font-size: 1.7rem;
     background-color: rgb(176, 148, 98);
+    border-color: rgb(176, 148, 98);
     border-radius: 10px;
+    color: white;
 }
 
-.glass-wrapper button{
-    font-size: 1.5rem;
+main .btn:hover{
+    background-color: inherit;
+    color: rgb(176, 148, 98);
+    border-color: rgb(176, 148, 98);
 }
 
-.glass-wrapper button:hover{
-    color: rgb(210, 210, 210);
-}
-
-.glass-wrapper button:active{
-    color: rgb(210, 210, 210)!important;
+main button:active{
+    background-color: rgb(176, 148, 98)!important;
+    border-color: rgb(176, 148, 98)!important;
 }
