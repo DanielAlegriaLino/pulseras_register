@@ -1,7 +1,7 @@
 from django.db import models, connection
 
 class t_registro(models.Model):
-    nIdRegistro = models.AutoField(primary_key=True)  
+    nIdRegistro = models.IntegerField(unique=True, primary_key=True)  
     cNombreCompleto = models.TextField()  
     cPaisEmpresa = models.TextField() 
     cModalidadActividad = models.TextField()  
