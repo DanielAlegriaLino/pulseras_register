@@ -11,6 +11,10 @@
 
 {% block content %}
 <body>
+    <h1 class="text-center mt-5 mb-3 no-print">Resumen de Registros</h1>
+    <div class="btn-container text-center my-3 no-print">
+        <button class="btn btn-primary print-btn" onclick="window.print()">Imprimir</button>
+    </div>
     <img src="{% static 'img/Icono.webp' %}" class="me-3 print-header-img" width="40" height="60" alt="Logo">
 
     <div class="print-info">
@@ -23,14 +27,16 @@
                 <th scope="col">Count</th>
                 <th scope="col">Percentage</th>
                 <th scope="col">Color</th>
+                <th scope="col">Brazalete</th>
             </tr>
         </thead>
         <tbody>
-            {% for count, percentage, color in counts_percentages_colors %}
+            {% for count, percentage, color, name in counts_percentages_colors %}
                 <tr>
                     <td>{{ count }}</td>
                     <td>{{ percentage }}</td>
                     <td>{{ color }}</td>
+                    <td>{{ name }}</td>
                 </tr>
             {% endfor %}
         </tbody>
