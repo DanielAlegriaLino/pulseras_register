@@ -16,10 +16,11 @@
         <div class="row d-flex mb-3"><h4 class="highlight">Buscar Registro</h4></div>
         <div class="row">
             <div class="col"></div>
-            <div class="col-8">
+            <div class="col-10">
                 <form action="/registros" role="search" class="d-flex mx-5">
                     <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" name="cNombreCompleto">
                     <button class="btn btn-outline-success me-2" type="submit">Buscar</button>
+                    <button class="btn btn-outline-success text-nowrap me-2" id="filter-btn" type="button">Sin asignar</button>
                     <a class="text-decoration-none" href="{% url 'registers' %}"><button class="btn btn-outline-success me-2">Reiniciar</button></a>
                 </form>
             </div>
