@@ -42,19 +42,9 @@ document.addEventListener('DOMContentLoaded', function () {
             aspectRatio: 0.4,
         },
     });
-
-    createPrintBtn();
-
 });
 
 var currentDate = new Date();
 var printDateElement = document.getElementById('printDate');
 var formattedDate = currentDate.toLocaleString();
 printDateElement.textContent = formattedDate;
-
-function createPrintBtn(){
-    const btn = document.getElementsByClassName("print-btn");
-    btn.addEventListener("click",()=>{
-        window.print();
-    })
-}
