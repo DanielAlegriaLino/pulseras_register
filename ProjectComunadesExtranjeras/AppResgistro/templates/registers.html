@@ -27,6 +27,22 @@
             <div class="col"></div>
         </div>
     </section>
+    <section>
+        {% if registros.has_previous %}
+        <a href="?page=1">&laquo; Primera</a>
+        <a href="?page={{ registros.previous_page_number }}">Anterior</a>
+        {% endif %}
+
+        <span class="current">
+            Página {{ registros.number }} de {{ registros.paginator.num_pages }}.
+        </span>
+
+        {% if registros.has_next %}
+            <a href="?page={{ registros.next_page_number }}">Siguiente</a>
+            <a href="?page={{ registros.paginator.num_pages }}">Última &raquo;</a>
+        {% endif %}
+    </section>
+
     <section class="container my-3">
         <table class="table">
             <thead>
@@ -42,6 +58,7 @@
                 </tr>
             </thead>
             <tbody>
+
                 {% for registro in registros %}
                 <tr>
                     <td>{{ registro.nIdRegistro }}</td>
@@ -70,6 +87,7 @@
                     </form>
                 </tr>
                 {% endfor %}
+
             </tbody>
         </table>
     </section>

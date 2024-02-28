@@ -3,24 +3,38 @@ from django.http import HttpResponse
 from .forms import t_registroForm
 from .models import t_registro
 import psycopg2
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def home(request):
     return render(request, 'home.html')
     
 def registers(request):
     nombre = request.GET.get("cNombreCompleto", None)
-    if(nombre):
-        print(nombre)
+    if nombre:
         registros = t_registro.objects.filter(cNombreCompleto__contains=nombre)
         return render(request, 'registers.html', {'registros': registros})
-    registros = t_registro.objects.all().order_by('cBrazalete')
+    else:
+        registros = t_registro.objects.all().order_by('cBrazalete')
+
+    paginator = Paginator(registros, 35)  # 10 registros por página
+    page = request.GET.get('page')
+
+    try:
+        registros_pagina = paginator.page(page)
+    except PageNotAnInteger:
+        registros_pagina = paginator.page(1)
+    except EmptyPage:
+        registros_pagina = paginator.page(paginator.num_pages)
+
+
     if request.method == 'POST':
         id_reg = request.POST.get('id_r')
         n_braz = request.POST.get('n_bz')
         registro_asignar = get_object_or_404(t_registro, nIdRegistro=id_reg)
         registro_asignar.cBrazalete = n_braz
         registro_asignar.save()
-    return render(request, 'registers.html', {'registros': registros})
+        
+    return render(request, 'registers.html', {'registros': registros_pagina})
 
 def FormRegistro(request):
     if request.method == 'POST':
