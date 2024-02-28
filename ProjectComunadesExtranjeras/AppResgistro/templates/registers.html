@@ -28,20 +28,28 @@
         </div>
     </section>
     <section>
-        {% if registros.has_previous %}
-        <a href="?page=1">&laquo; Primera</a>
-        <a href="?page={{ registros.previous_page_number }}">Anterior</a>
-        {% endif %}
+        <ul class="pagination justify-content-center align-items-center">
+            <li class="d-flex">
+                {% if registros.has_previous %}
+                <a href="?page=1" class="btn btn-outline-success">&laquo; Primera</a>
+                {% endif %}
 
-        <span class="current">
-            Página {{ registros.number }} de {{ registros.paginator.num_pages }}.
-        </span>
+                {% if registros.has_previous %}
+                    <a class="page-link text-success" href="?page={{ registros.previous_page_number }}">{{ registros.previous_page_number }}</a>
+                {% endif %}
+                
+                <a class="page-link text-success" href="?page={{ registros.number }}">{{ registros.number }}</a>
+                
+                {% if registros.has_next %}
+                    <a class="page-link text-success" href="?page={{ registros.next_page_number }}">{{ registros.next_page_number }}</a>
+                {% endif %}
 
-        {% if registros.has_next %}
-            <a href="?page={{ registros.next_page_number }}">Siguiente</a>
-            <a href="?page={{ registros.paginator.num_pages }}">Última &raquo;</a>
-        {% endif %}
-    </section>
+                {% if registros.has_next %}
+                    <a href="?page={{ registros.paginator.num_pages }}" class="btn btn-outline-success">Última &raquo;</a>
+                {% endif %}
+            </li>
+        </ul>
+    </section>    
 
     <section class="container my-3">
         <table class="table">
