@@ -44,3 +44,19 @@ select option[value="6"]{
 .highlight{
     color: #005a5a !important;;
 }
+
+.pagination a.page-link {
+    color: green;
+    border: 1px solid green;
+    margin: 0 5px;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.pagination a.page-link.current {
+    color: green;
+    background-color: green;
+    border: 1px solid green;
+}
