@@ -18,10 +18,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     rows.forEach(function (row) {
         var cells = row.querySelectorAll('td');
-        labels.push(cells[2].textContent); 
+        labels.push(cells[3].textContent); 
         dataValues.push(parseFloat(cells[1].textContent));
 
-        var categoryIndex = labels.indexOf(cells[2].textContent);
+        var categoryIndex = labels.indexOf(cells[3].textContent);
         backgroundColors.push(colorPalette[categoryIndex]);
     });
 
