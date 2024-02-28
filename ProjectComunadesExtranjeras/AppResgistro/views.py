@@ -4,6 +4,7 @@ from .forms import t_registroForm
 from .models import t_registro
 import psycopg2
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import Q
 
 def home(request):
     return render(request, 'home.html')
@@ -11,7 +12,7 @@ def home(request):
 def registers(request):
     nombre = request.GET.get("cNombreCompleto", None)
     if nombre:
-        registros = t_registro.objects.filter(cNombreCompleto__contains=nombre)
+        registros = t_registro.objects.filter(Q(cNombreCompleto__contains=nombre) | Q(cPaisEmpresa__contains=nombre))
         return render(request, 'registers.html', {'registros': registros})
     else:
         registros = t_registro.objects.all().order_by('cBrazalete')
