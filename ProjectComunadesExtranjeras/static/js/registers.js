@@ -46,7 +46,6 @@ function filterAssigned(){
 
 function toggleOrder(){
     const toggleButtons = document.querySelectorAll('.sort-btn');
-    console.log(typeof(toggleButtons));
     toggleButtons.forEach(btn => {
         btn.addEventListener("click", () => {
             const symbol = btn.getElementsByTagName("i");
