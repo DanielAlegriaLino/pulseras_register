@@ -14,8 +14,9 @@ def registers(request):
     order = request.GET.get('order', 'asc')
     next_order = 'desc' if order == 'asc' else 'asc'
     if nombre:
-        registros = t_registro.objects.filter(Q(cNombreCompleto__contains=nombre) | Q(cPaisEmpresa__contains=nombre))
-        return render(request, 'registers.html', {'registros': registros})
+        registros = t_registro.objects.filter(Q(cNombreCompleto__contains=nombre) | 
+                                              Q(cPaisEmpresa__contains=nombre) | 
+                                              Q(cModalidadActividad__contains=nombre))
     else:
         registros = t_registro.objects.all().order_by('-dFecha')
 
