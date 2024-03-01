@@ -44,9 +44,21 @@ function filterAssigned(){
     })
 }
 
+function toggleOrder(){
+    const toggleButtons = document.querySelectorAll('.sort-btn');
+    toggleButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const symbol = btn.getElementsByTagName("i");
+            symbol[0].classList.toggle("fa-arrow-down-a-z");
+            symbol[0].classList.toggle("fa-arrow-up-a-z");
+        })
+    })
+}
+
 document.addEventListener("DOMContentLoaded", () => {
-    asignarPulsera()
-    cambiarColorPulsera()
-    filterAssigned()
+    asignarPulsera();
+    cambiarColorPulsera();
+    filterAssigned();
+    toggleOrder();
 })
 

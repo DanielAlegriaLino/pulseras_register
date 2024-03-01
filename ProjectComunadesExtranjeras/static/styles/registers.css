@@ -60,3 +60,20 @@ select option[value="6"]{
     background-color: green;
     border: 1px solid green;
 }
+
+.sort-btn{
+    border-color: rgb(176, 148, 98);
+}
+
+.sort-btn:hover{
+    background-color: rgb(176, 148, 98);
+    color: white;
+}
+
+.sort-btn:active{
+    border-color: rgb(176, 148, 98)!important;
+}
+
+.sort-toggle{
+    margin-left: 5px;
+}
