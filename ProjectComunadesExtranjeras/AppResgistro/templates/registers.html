@@ -55,14 +55,56 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th><button class="btn sort-btn a-z">ID<i class="fa-solid fa-arrow-down-a-z sort-toggle"></i></button></th>
-                    <th><button class="btn sort-btn a-z">Nombre<i class="fa-solid fa-arrow-down-a-z sort-toggle"></i></button></th>
-                    <th><button class="btn sort-btn a-z">Pais o Empresa <i class="fa-solid fa-arrow-down-a-z sort-toggle"></i></button></th>
-                    <th><button class="btn sort-btn a-z">Modalidad<i class="fa-solid fa-arrow-down-a-z sort-toggle"></i></button></th>
-                    <th><button class="btn sort-btn a-z">Fecha<i class="fa-solid fa-arrow-down-a-z sort-toggle"></i></button></th>
-                    <th><button class="btn sort-btn a-z">Hora<i class="fa-solid fa-arrow-down-a-z sort-toggle"></i></button></th>
-                    <th><button class="btn sort-btn a-z">Tipo de Brazalete<i class="fa-solid fa-arrow-down-a-z sort-toggle"></i></button></th>
-                    <th>Guardar</th>
+                    {{ field }}
+                    <th>
+                    {% if next_order == "asc" and field == "nIdRegistro" %}
+                        <a href="?field=nIdRegistro&order={{ next_order }}"><button class="btn sort-btn a-z" data-field="nIdRegistro">ID<i class="fa-solid fa-arrow-down-a-z sort-toggle "></i></button></a>
+                    {% else %}
+                        <a href="?field=nIdRegistro&order={{ next_order }}"><button class="btn sort-btn a-z" data-field="nIdRegistro">ID<i class="fa-solid sort-toggle fa-arrow-up-a-z"></i></button></a>
+                    {% endif %}
+                    </th>
+                    <th>
+                    {% if next_order == "asc" and field == "cNombreCompleto" %}
+                        <a href="?field=cNombreCompleto&order={{ next_order }}"><button class="btn sort-btn a-z" data-field="cNombreCompleto">Nombre<i class="fa-solid fa-arrow-down-a-z sort-toggle"></i></button></a>
+                    {% else %}
+                        <a href="?field=cNombreCompleto&order={{ next_order }}"><button class="btn sort-btn a-z" data-field="cNombreCompleto">Nombre<i class="fa-solid sort-toggle fa-arrow-up-a-z"></i></button></a>
+                    {% endif %}
+                    </th>
+                    <th>
+                    {% if next_order == "asc" and field == "cPaisEmpresa" %}
+                        <a href="?field=cPaisEmpresa&order={{ next_order }}"><button class="btn sort-btn a-z" data-field="cPaisEmpresa">Pais o Empresa <i class="fa-solid fa-arrow-down-a-z sort-toggle"></i></button></a>
+                    {% else %}
+                        <a href="?field=cPaisEmpresa&order={{ next_order }}"><button class="btn sort-btn a-z" data-field="cPaisEmpresa">Pais o Empresa <i class="fa-solid sort-toggle fa-arrow-up-a-z"></i></button></a>
+                    {% endif %}
+                    <th>
+                    {% if next_order == "asc" and field == "cModalidadActividad" %}
+                        <a href="?field=cModalidadActividad&order={{ next_order }}"><button class="btn sort-btn a-z" data-field="cModalidadActividad">Modalidad<i class="fa-solid fa-arrow-down-a-z sort-toggle"></i></button></a>
+                    {% else %}
+                        <a href="?field=cModalidadActividad&order={{ next_order }}"><button class="btn sort-btn a-z" data-field="cModalidadActividad">Modalidad<i class="fa-solid sort-toggle fa-arrow-up-a-z"></i></button></a>
+                    {% endif %}
+                    </th>
+                    <th>
+                    {% if next_order == "asc" and field == "dFecha" %}
+                        <a href="?field=dFecha&order={{ next_order }}"><button class="btn sort-btn a-z" data-field="dFecha">Fecha<i class="fa-solid fa-arrow-down-a-z sort-toggle"></i></button></a>
+                    {% else %}
+                        <a href="?field=dFecha&order={{ next_order }}"><button class="btn sort-btn a-z" data-field="dFecha">Fecha<i class="fa-solid sort-toggle fa-arrow-up-a-z"></i></button></a>
+                    {% endif %}
+                    </th>
+                    <th>
+                    {% if next_order == "asc" and field == "tHora" %}
+                        <a href="?field=tHora&order={{ next_order }}"><button class="btn sort-btn a-z" data-field="tHora">Hora<i class="fa-solid fa-arrow-down-a-z sort-toggle"></i></button></a> 
+                    {% else %}
+                        <a href="?field=tHora&order={{ next_order }}"><button class="btn sort-btn a-z" data-field="tHora">Hora<i class="fa-solid sort-toggle fa-arrow-up-a-z"></i></button></a>
+                    {% endif %}
+                    </th>
+                    <th>
+                    {% if next_order == "asc" and field == "cBrazalete" %}
+                        <a href="?field=cBrazalete&order={{ next_order }}"><button class="btn sort-btn a-z" data-field="cBrazalete">Tipo de Brazalete<i class="fa-solid fa-arrow-down-a-z sort-toggle"></i></button></a> 
+                    {% else %}
+                    <a href="?field=cBrazalete&order={{ next_order }}"><button class="btn sort-btn a-z" data-field="cBrazalete">Tipo de Brazalete<i class="fa-solid sort-toggle fa-arrow-up-a-z"></i></button></a>
+                    {% endif %}
+                    </th>
+                    <th>Guardar</th>  
                 </tr>
             </thead>
             <tbody>
@@ -104,5 +146,6 @@
 {% endblock %}
 
 {% block scripts %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{% static 'js/registers.js' %}"></script>
 {% endblock %}

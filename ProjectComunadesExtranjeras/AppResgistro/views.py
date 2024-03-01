@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from .forms import t_registroForm
 from .models import t_registro
 import psycopg2
@@ -11,11 +11,21 @@ def home(request):
     
 def registers(request):
     nombre = request.GET.get("cNombreCompleto", None)
+    order = request.GET.get('order', 'asc')
+    next_order = 'desc' if order == 'asc' else 'asc'
     if nombre:
         registros = t_registro.objects.filter(Q(cNombreCompleto__contains=nombre) | Q(cPaisEmpresa__contains=nombre))
         return render(request, 'registers.html', {'registros': registros})
     else:
-        registros = t_registro.objects.all().order_by('cBrazalete')
+        registros = t_registro.objects.all().order_by('-dFecha')
+
+    field = request.GET.get('field', 'dFecha')
+    
+    if field:
+        if order == 'asc':
+            registros = registros.order_by(f'-{field}')
+        else:
+            registros = registros.order_by(field)
 
     paginator = Paginator(registros, 35)  # 10 registros por página
     page = request.GET.get('page')
@@ -25,8 +35,7 @@ def registers(request):
     except PageNotAnInteger:
         registros_pagina = paginator.page(1)
     except EmptyPage:
-        registros_pagina = paginator.page(paginator.num_pages)
-
+        registros_pagina = paginator.page(paginator.num_pages) 
 
     if request.method == 'POST':
         id_reg = request.POST.get('id_r')
@@ -34,8 +43,16 @@ def registers(request):
         registro_asignar = get_object_or_404(t_registro, nIdRegistro=id_reg)
         registro_asignar.cBrazalete = n_braz
         registro_asignar.save()
-        
-    return render(request, 'registers.html', {'registros': registros_pagina})
+    return render(request, 'registers.html', {'registros': registros_pagina, 'order': order, 'next_order': next_order, 'field': field})
+
+def ordenar_registros(request):
+    field = request.GET.get('field')
+    order = request.GET.get('order', 'asc') 
+    if order == 'desc':
+        field = '-' + field
+    registros = t_registro.objects.all().order_by(field)
+    html = render(request, 'registers.html', {'registros': registros})
+    return JsonResponse({'html': html.content})
 
 def FormRegistro(request):
     if request.method == 'POST':
