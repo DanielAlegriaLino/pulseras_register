@@ -62,3 +62,29 @@ document.addEventListener("DOMContentLoaded", () => {
     toggleOrder();
 })
 
+document.addEventListener('DOMContentLoaded', function() {
+    const buttonStates = {};
+    const selectedButtonsInput = document.getElementById('selected-buttons');
+
+    document.querySelectorAll('.sort-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const id = this.getAttribute('data-id');
+            const field = this.getAttribute('data-field');
+            if (buttonStates[field]) {
+                buttonStates[field] = false;
+            } else {
+                buttonStates[field] = true;
+            }
+            let selectedButtons = '';
+            Object.keys(buttonStates).forEach(key => {
+                if (buttonStates[key]) {
+                    selectedButtons += "-" + key;
+                } else {
+                    selectedButtons += key;
+                }
+                selectedButtons += ',';
+            });
+            selectedButtonsInput.value = selectedButtons.slice(0, -1);
+        });
+    });
+});
