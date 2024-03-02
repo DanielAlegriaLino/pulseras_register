@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse
 from .forms import t_registroForm
 from .models import t_registro
 import psycopg2
@@ -12,22 +12,10 @@ def home(request):
 def registers(request):
     verificador = 0
     nombre = request.GET.get("cNombreCompleto", None)
-    order = request.GET.get('order', 'asc')
-    next_order = 'desc' if order == 'asc' else 'asc'
     if nombre:
-        registros = t_registro.objects.filter(Q(cNombreCompleto__contains=nombre) | 
-                                              Q(cPaisEmpresa__contains=nombre) | 
-                                              Q(cModalidadActividad__contains=nombre))
+        registros = t_registro.objects.filter(Q(cNombreCompleto__contains=nombre) | Q(cPaisEmpresa__contains=nombre) | Q(cModalidadActividad__contains=nombre))
     else:
         registros = t_registro.objects.all().order_by('-dFecha')
-
-    field = request.GET.get('field', 'dFecha')
-    
-    if field:
-        if order == 'asc':
-            registros = registros.order_by(f'-{field}')
-        else:
-            registros = registros.order_by(field)
 
     paginator = Paginator(registros, 35)  # 10 registros por página
     page = request.GET.get('page')
@@ -45,20 +33,18 @@ def registers(request):
         registro_asignar = get_object_or_404(t_registro, nIdRegistro=id_reg)
         registro_asignar.cBrazalete = n_braz
         registro_asignar.save()
-    return render(request, 'registers.html', {'registros': registros_pagina, 'order': order, 'next_order': next_order, 'field': field, 'verificador': verificador})
+    return render(request, 'registers.html', {'registros': registros_pagina,'verificador': verificador})
 
 def registers_or(request):
     input_value = request.GET.get('selected_buttons', '')
     valores = input_value.split(',')
-    if request.method == 'POST':
-        selected_buttons = request.POST.get('selected_buttons')
-        print(selected_buttons[:-1])
+    
     nombre = request.GET.get("cNombreCompleto", None)
     if nombre:
         registros = t_registro.objects.filter(Q(cNombreCompleto__contains=nombre) | Q(cPaisEmpresa__contains=nombre))
-        return render(request, 'registers.html', {'registros': registros})
-    else: 
+    else:
         registros = t_registro.objects.all().order_by(*valores)
+            
 
     paginator = Paginator(registros, 35)  # 10 registros por página
     page = request.GET.get('page')
@@ -77,7 +63,7 @@ def registers_or(request):
         registro_asignar.cBrazalete = n_braz
         registro_asignar.save()
 
-    return render(request, 'registers-copy.html', {'registros': registros_pagina})
+    return render(request, 'registers-copy.html', {'registros': registros_pagina, 'valores': valores})
 
 def FormRegistro(request):
     if request.method == 'POST':
@@ -124,10 +110,6 @@ def getSummary(request):
         return HttpResponse("La base de datos no responde, contacte a los desarrolladores")
     finally:
         conn.close()
-        
-    print(counts)
-    print(percentages)
-    print(entire)
     
     colores=["No asignado","Amarillo", "Naranja", "Verde", "Azul", "Rosa", "Morado"]
     nombres = ["No asignado", "Staff", "Expositor", "Colaborador", "VIP", "Artista", "Comunicación"]

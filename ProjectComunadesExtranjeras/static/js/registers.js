@@ -78,9 +78,9 @@ document.addEventListener('DOMContentLoaded', function() {
             let selectedButtons = '';
             Object.keys(buttonStates).forEach(key => {
                 if (buttonStates[key]) {
-                    selectedButtons += key;
-                } else {
                     selectedButtons += "-" + key;
+                } else {
+                    selectedButtons += key;
                 }
                 selectedButtons += ',';
             });

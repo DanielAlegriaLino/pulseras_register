@@ -31,21 +31,21 @@
         <ul class="pagination justify-content-center align-items-center">
             <li class="d-flex">
                 {% if registros.has_previous %}
-                <a href="?page=1" class="btn btn-outline-success">&laquo; Primera</a>
+                <a href="?page=1&selected_buttons={{ valores|join:',' }}{% if nombre %}&cNombreCompleto={{ nombre }}{% endif %}" class="btn btn-outline-success">&laquo; Primera</a>
                 {% endif %}
 
                 {% if registros.has_previous %}
-                    <a class="page-link text-success" href="?page={{ registros.previous_page_number }}">{{ registros.previous_page_number }}</a>
+                    <a class="page-link text-success" href="?page={{ registros.previous_page_number }}&selected_buttons={{ valores|join:',' }}{% if nombre %}&cNombreCompleto={{ nombre }}{% endif %}">{{ registros.previous_page_number }}</a>
                 {% endif %}
                 
-                <a class="page-link text-success" href="?page={{ registros.number }}">{{ registros.number }}</a>
+                <a class="page-link text-success" href="?page={{ registros.number }}&selected_buttons={{ valores|join:',' }}{% if nombre %}&cNombreCompleto={{ nombre }}{% endif %}">{{ registros.number }}</a>
                 
                 {% if registros.has_next %}
-                    <a class="page-link text-success" href="?page={{ registros.next_page_number }}">{{ registros.next_page_number }}</a>
+                    <a class="page-link text-success" href="?page={{ registros.next_page_number }}&selected_buttons={{ valores|join:',' }}{% if nombre %}&cNombreCompleto={{ nombre }}{% endif %}">{{ registros.next_page_number }}</a>
                 {% endif %}
 
                 {% if registros.has_next %}
-                    <a href="?page={{ registros.paginator.num_pages }}" class="btn btn-outline-success">Última &raquo;</a>
+                    <a href="?page={{ registros.paginator.num_pages }}&selected_buttons={{ valores|join:',' }}{% if nombre %}&cNombreCompleto={{ nombre }}{% endif %}" class="btn btn-outline-success">Última &raquo;</a>
                 {% endif %}
             </li>
         </ul>
@@ -63,7 +63,7 @@
                     <th><button class="btn sort-btn a-z" data-id="11" data-field="tHora">Hora<i class="fa-solid sort-toggle fa-arrow-up-a-z"></i></button></a></th>
                     <th><button class="btn sort-btn a-z" data-id="13" data-field="cBrazalete">Tipo de Brazalete<i class="fa-solid sort-toggle fa-arrow-up-a-z"></i></button></a></th>
                     <form method="get" action="{% url 'registers_or' %}">
-                        <input type="hidden" id="selected-buttons" name="selected_buttons">
+                        <input type="" id="selected-buttons" name="selected_buttons">
                         <th><button type="submit" class="btn btn-outline-success me-2"> Filtrar </button></th>
                     </form>
                 </tr>
