@@ -47,40 +47,19 @@ def registers(request):
         registro_asignar.save()
     return render(request, 'registers.html', {'registros': registros_pagina, 'order': order, 'next_order': next_order, 'field': field, 'verificador': verificador})
 
-def registers_or(request, n, a = None):
+def registers_or(request):
+    input_value = request.GET.get('selected_buttons', '')
+    valores = input_value.split(',')
+    if request.method == 'POST':
+        selected_buttons = request.POST.get('selected_buttons')
+        print(selected_buttons[:-1])
     nombre = request.GET.get("cNombreCompleto", None)
     if nombre:
         registros = t_registro.objects.filter(Q(cNombreCompleto__contains=nombre) | Q(cPaisEmpresa__contains=nombre))
         return render(request, 'registers.html', {'registros': registros})
-    else:
-        if n == 1:
-            registros = t_registro.objects.all().order_by("nIdRegistro")
-        elif n == 2:
-            registros = t_registro.objects.all().order_by("-nIdRegistro")
-        elif n == 3:
-            registros = t_registro.objects.all().order_by("cNombreCompleto")
-        elif n == 4:
-            registros = t_registro.objects.all().order_by("-cNombreCompleto")
-        elif n == 5:
-            registros = t_registro.objects.all().order_by("cPaisEmpresa")
-        elif n == 6:
-            registros = t_registro.objects.all().order_by("-cPaisEmpresa")
-        elif n == 7:
-            registros = t_registro.objects.all().order_by("cModalidadActividad")
-        elif n == 8:
-            registros = t_registro.objects.all().order_by("-cModalidadActividad")
-        elif n == 9:
-            registros = t_registro.objects.all().order_by("dFecha")
-        elif n == 10:
-            registros = t_registro.objects.all().order_by("-dFecha")
-        elif n == 11:
-            registros = t_registro.objects.all().order_by("tHora")
-        elif n == 12:
-            registros = t_registro.objects.all().order_by("-tHora")
-        elif n == 13:
-            registros = t_registro.objects.all().order_by("cBrazalete")
-        elif n == 14:
-            registros = t_registro.objects.all().order_by("-cBrazalete")
+    else: 
+        registros = t_registro.objects.all().order_by(*valores)
+
     paginator = Paginator(registros, 35)  # 10 registros por página
     page = request.GET.get('page')
 
@@ -98,7 +77,7 @@ def registers_or(request, n, a = None):
         registro_asignar.cBrazalete = n_braz
         registro_asignar.save()
 
-    return render(request, 'registers-copy.html', {'registros': registros_pagina, 'n': n})
+    return render(request, 'registers-copy.html', {'registros': registros_pagina})
 
 def FormRegistro(request):
     if request.method == 'POST':
