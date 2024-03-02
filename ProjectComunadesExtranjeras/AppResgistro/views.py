@@ -10,6 +10,7 @@ def home(request):
     return render(request, 'home.html')
     
 def registers(request):
+    verificador = 0
     nombre = request.GET.get("cNombreCompleto", None)
     order = request.GET.get('order', 'asc')
     next_order = 'desc' if order == 'asc' else 'asc'
@@ -44,16 +45,60 @@ def registers(request):
         registro_asignar = get_object_or_404(t_registro, nIdRegistro=id_reg)
         registro_asignar.cBrazalete = n_braz
         registro_asignar.save()
-    return render(request, 'registers.html', {'registros': registros_pagina, 'order': order, 'next_order': next_order, 'field': field})
+    return render(request, 'registers.html', {'registros': registros_pagina, 'order': order, 'next_order': next_order, 'field': field, 'verificador': verificador})
 
-def ordenar_registros(request):
-    field = request.GET.get('field')
-    order = request.GET.get('order', 'asc') 
-    if order == 'desc':
-        field = '-' + field
-    registros = t_registro.objects.all().order_by(field)
-    html = render(request, 'registers.html', {'registros': registros})
-    return JsonResponse({'html': html.content})
+def registers_or(request, n, a = None):
+    nombre = request.GET.get("cNombreCompleto", None)
+    if nombre:
+        registros = t_registro.objects.filter(Q(cNombreCompleto__contains=nombre) | Q(cPaisEmpresa__contains=nombre))
+        return render(request, 'registers.html', {'registros': registros})
+    else:
+        if n == 1:
+            registros = t_registro.objects.all().order_by("nIdRegistro")
+        elif n == 2:
+            registros = t_registro.objects.all().order_by("-nIdRegistro")
+        elif n == 3:
+            registros = t_registro.objects.all().order_by("cNombreCompleto")
+        elif n == 4:
+            registros = t_registro.objects.all().order_by("-cNombreCompleto")
+        elif n == 5:
+            registros = t_registro.objects.all().order_by("cPaisEmpresa")
+        elif n == 6:
+            registros = t_registro.objects.all().order_by("-cPaisEmpresa")
+        elif n == 7:
+            registros = t_registro.objects.all().order_by("cModalidadActividad")
+        elif n == 8:
+            registros = t_registro.objects.all().order_by("-cModalidadActividad")
+        elif n == 9:
+            registros = t_registro.objects.all().order_by("dFecha")
+        elif n == 10:
+            registros = t_registro.objects.all().order_by("-dFecha")
+        elif n == 11:
+            registros = t_registro.objects.all().order_by("tHora")
+        elif n == 12:
+            registros = t_registro.objects.all().order_by("-tHora")
+        elif n == 13:
+            registros = t_registro.objects.all().order_by("cBrazalete")
+        elif n == 14:
+            registros = t_registro.objects.all().order_by("-cBrazalete")
+    paginator = Paginator(registros, 35)  # 10 registros por página
+    page = request.GET.get('page')
+
+    try:
+        registros_pagina = paginator.page(page)
+    except PageNotAnInteger:
+        registros_pagina = paginator.page(1)
+    except EmptyPage:
+        registros_pagina = paginator.page(paginator.num_pages) 
+
+    if request.method == 'POST':
+        id_reg = request.POST.get('id_r')
+        n_braz = request.POST.get('n_bz')
+        registro_asignar = get_object_or_404(t_registro, nIdRegistro=id_reg)
+        registro_asignar.cBrazalete = n_braz
+        registro_asignar.save()
+
+    return render(request, 'registers-copy.html', {'registros': registros_pagina, 'n': n})
 
 def FormRegistro(request):
     if request.method == 'POST':

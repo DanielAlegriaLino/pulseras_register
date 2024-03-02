@@ -55,89 +55,78 @@
         <table class="table">
             <thead>
                 <tr>
-                    {{ field }}
-                    <th>
-                    {% if next_order == "asc" and field == "nIdRegistro" %}
-                        <a href="?field=nIdRegistro&order={{ next_order }}"><button class="btn sort-btn a-z" data-field="nIdRegistro">ID<i class="fa-solid fa-arrow-down-a-z sort-toggle "></i></button></a>
-                    {% else %}
-                        <a href="?field=nIdRegistro&order={{ next_order }}"><button class="btn sort-btn a-z" data-field="nIdRegistro">ID<i class="fa-solid sort-toggle fa-arrow-up-a-z"></i></button></a>
+                    {% if not n == 1 %}
+                        <th><a href="{% url 'registers_or' n=1 %}"><button class="btn sort-btn a-z" data-field="nIdRegistro">ID<i class="fa-solid sort-toggle fa-arrow-up-a-z"></i></button></a></th>
+                    {% elif n == 1 %}
+                        <th><a href="{% url 'registers_or_with' n=2 a=1 %}"><button class="btn sort-btn a-z" data-field="nIdRegistro">ID<i class="fa-solid fa-arrow-down-a-z sort-toggle"></i></button></a></th>
                     {% endif %}
-                    </th>
-                    <th>
-                    {% if next_order == "asc" and field == "cNombreCompleto" %}
-                        <a href="?field=cNombreCompleto&order={{ next_order }}"><button class="btn sort-btn a-z" data-field="cNombreCompleto">Nombre<i class="fa-solid fa-arrow-down-a-z sort-toggle"></i></button></a>
-                    {% else %}
-                        <a href="?field=cNombreCompleto&order={{ next_order }}"><button class="btn sort-btn a-z" data-field="cNombreCompleto">Nombre<i class="fa-solid sort-toggle fa-arrow-up-a-z"></i></button></a>
+                    {% if not n == 3 %}
+                        <th><a href="{% url 'registers_or' n=3 %}"><button class="btn sort-btn a-z" data-field="cNombreCompleto">Nombre<i class="fa-solid sort-toggle fa-arrow-up-a-z"></i></button></a></th>
+                    {% elif n == 3 %}
+                        <th><a href="{% url 'registers_or' n=4 %}"><button class="btn sort-btn a-z" data-field="cNombreCompleto">Nombre<i class="fa-solid fa-arrow-down-a-z sort-toggle"></i></button></a></th>
                     {% endif %}
-                    </th>
-                    <th>
-                    {% if next_order == "asc" and field == "cPaisEmpresa" %}
-                        <a href="?field=cPaisEmpresa&order={{ next_order }}"><button class="btn sort-btn a-z" data-field="cPaisEmpresa">Pais o Empresa <i class="fa-solid fa-arrow-down-a-z sort-toggle"></i></button></a>
-                    {% else %}
-                        <a href="?field=cPaisEmpresa&order={{ next_order }}"><button class="btn sort-btn a-z" data-field="cPaisEmpresa">Pais o Empresa <i class="fa-solid sort-toggle fa-arrow-up-a-z"></i></button></a>
+                    {% if not n == 5 %}
+                        <th><a href="{% url 'registers_or' n=5 %}"><button class="btn sort-btn a-z" data-field="cPaisEmpresa">Pais o Empresa <i class="fa-solid sort-toggle fa-arrow-up-a-z"></i></button></a></th>
+                    {% elif n == 5 %}
+                        <th><a href="{% url 'registers_or' n=6 %}"><button class="btn sort-btn a-z" data-field="cPaisEmpresa">Pais o Empresa <i class="fa-solid fa-arrow-down-a-z sort-toggle"></i></button></a></th>
                     {% endif %}
-                    <th>
-                    {% if next_order == "asc" and field == "cModalidadActividad" %}
-                        <a href="?field=cModalidadActividad&order={{ next_order }}"><button class="btn sort-btn a-z" data-field="cModalidadActividad">Modalidad<i class="fa-solid fa-arrow-down-a-z sort-toggle"></i></button></a>
-                    {% else %}
-                        <a href="?field=cModalidadActividad&order={{ next_order }}"><button class="btn sort-btn a-z" data-field="cModalidadActividad">Modalidad<i class="fa-solid sort-toggle fa-arrow-up-a-z"></i></button></a>
+                    {% if not n == 7 %}
+                        <th><a href="{% url 'registers_or' n=7 %}"><button class="btn sort-btn a-z" data-field="cModalidadActividad">Modalidad<i class="fa-solid sort-toggle fa-arrow-up-a-z"></i></button></a></th>
+                    {% elif n == 7 %}
+                        <th><a href="{% url 'registers_or' n=8 %}"><button class="btn sort-btn a-z" data-field="cModalidadActividad">Modalidad<i class="fa-solid fa-arrow-down-a-z sort-toggle"></i></button></a></th>
                     {% endif %}
-                    </th>
-                    <th>
-                    {% if next_order == "asc" and field == "dFecha" %}
-                        <a href="?field=dFecha&order={{ next_order }}"><button class="btn sort-btn a-z" data-field="dFecha">Fecha<i class="fa-solid fa-arrow-down-a-z sort-toggle"></i></button></a>
-                    {% else %}
-                        <a href="?field=dFecha&order={{ next_order }}"><button class="btn sort-btn a-z" data-field="dFecha">Fecha<i class="fa-solid sort-toggle fa-arrow-up-a-z"></i></button></a>
+                    {% if not n == 9 %}
+                        <th><a href="{% url 'registers_or' n=9 %}"><button class="btn sort-btn a-z" data-field="dFecha">Fecha<i class="fa-solid sort-toggle fa-arrow-up-a-z"></i></button></a></th>
+                    {% elif n == 9 %}
+                        <th><a href="{% url 'registers_or' n=10 %}"><button class="btn sort-btn a-z" data-field="dFecha">Fecha<i class="fa-solid fa-arrow-down-a-z sort-toggle"></i></button></a></th>
                     {% endif %}
-                    </th>
-                    <th>
-                    {% if next_order == "asc" and field == "tHora" %}
-                        <a href="?field=tHora&order={{ next_order }}"><button class="btn sort-btn a-z" data-field="tHora">Hora<i class="fa-solid fa-arrow-down-a-z sort-toggle"></i></button></a> 
-                    {% else %}
-                        <a href="?field=tHora&order={{ next_order }}"><button class="btn sort-btn a-z" data-field="tHora">Hora<i class="fa-solid sort-toggle fa-arrow-up-a-z"></i></button></a>
+                    {% if not n == 11 %}
+                        <th><a href="{% url 'registers_or' n=11 %}"><button class="btn sort-btn a-z" data-field="tHora">Hora<i class="fa-solid sort-toggle fa-arrow-up-a-z"></i></button></a></th>
+                    {% elif n == 11 %}
+                        <th><a href="{% url 'registers_or' n=12 %}"><button class="btn sort-btn a-z" data-field="tHora">Hora<i class="fa-solid fa-arrow-down-a-z sort-toggle"></i></button></a></th>
                     {% endif %}
-                    </th>
-                    <th>
-                    {% if next_order == "asc" and field == "cBrazalete" %}
-                        <a href="?field=cBrazalete&order={{ next_order }}"><button class="btn sort-btn a-z" data-field="cBrazalete">Tipo de Brazalete<i class="fa-solid fa-arrow-down-a-z sort-toggle"></i></button></a> 
-                    {% else %}
-                    <a href="?field=cBrazalete&order={{ next_order }}"><button class="btn sort-btn a-z" data-field="cBrazalete">Tipo de Brazalete<i class="fa-solid sort-toggle fa-arrow-up-a-z"></i></button></a>
+                    {% if not n == 13 %}
+                        <th><a href="{% url 'registers_or' n=13 %}"><button class="btn sort-btn a-z" data-field="cBrazalete">Tipo de Brazalete<i class="fa-solid sort-toggle fa-arrow-up-a-z"></i></button></a></th>
+                    {% elif n == 13 %}
+                        <th><a href="{% url 'registers_or' n=14 %}"><button class="btn sort-btn a-z" data-field="cBrazalete">Tipo de Brazalete<i class="fa-solid fa-arrow-down-a-z sort-toggle"></i></button></a></th>
                     {% endif %}
-                    </th>
-                    <th>Guardar</th>  
                 </tr>
             </thead>
             <tbody>
+                {% if verificador == 0 %}
+                    {% for registro in registros %}
+                    <tr>
+                        <td>{{ registro.nIdRegistro }}</td>
+                        <td>{{ registro.cNombreCompleto  }}</td>
+                        <td>{{ registro.cPaisEmpresa }}</td>
+                        <td>{{ registro.cModalidadActividad }}</td>
+                        <td>{{ registro.dFecha }}</td>
+                        <td>{{ registro.tHora }}</td>
+                        <form method="post">
+                            {% csrf_token %}
+                            <td>
+                                <Select name="n_bz" class="form-select text-center tipo-pulsera" aria-label="tipo-pulsera">
+                                    <option {% if registro.cBrazalete == 0 %}selected{% endif %} value="0">Tipo de Pulsera</option>
+                                    <option {% if registro.cBrazalete == 1 %}selected{% endif %} value="1">Staff</option>
+                                    <option {% if registro.cBrazalete == 2 %}selected{% endif %} value="2">Expositor</option>
+                                    <option {% if registro.cBrazalete == 3 %}selected{% endif %} value="3">Colaborador</option>
+                                    <option {% if registro.cBrazalete == 4 %}selected{% endif %} value="4">VIP</option>
+                                    <option {% if registro.cBrazalete == 5 %}selected{% endif %} value="5"value="5">Artista</option>
+                                    <option {% if registro.cBrazalete == 6 %}selected{% endif %} value="6"value="6">Comunicación</option>
+                                </Select>
+                            </td>
+                            <td>
+                                <input style="display: none;" type="text" name="id_r" id="id_r" value="{{ registro.nIdRegistro }}">
+                                <button class="btn btn-primary save-btn" type="submit">Guardar</button>
+                            </td>
+                        </form>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                {% block orden %}
 
-                {% for registro in registros %}
-                <tr>
-                    <td>{{ registro.nIdRegistro }}</td>
-                    <td>{{ registro.cNombreCompleto  }}</td>
-                    <td>{{ registro.cPaisEmpresa }}</td>
-                    <td>{{ registro.cModalidadActividad }}</td>
-                    <td>{{ registro.dFecha }}</td>
-                    <td>{{ registro.tHora }}</td>
-                    <form method="post">
-                        {% csrf_token %}
-                        <td>
-                            <Select name="n_bz" class="form-select text-center tipo-pulsera" aria-label="tipo-pulsera">
-                                <option {% if registro.cBrazalete == 0 %}selected{% endif %} value="0">Tipo de Pulsera</option>
-                                <option {% if registro.cBrazalete == 1 %}selected{% endif %} value="1">Staff</option>
-                                <option {% if registro.cBrazalete == 2 %}selected{% endif %} value="2">Expositor</option>
-                                <option {% if registro.cBrazalete == 3 %}selected{% endif %} value="3">Colaborador</option>
-                                <option {% if registro.cBrazalete == 4 %}selected{% endif %} value="4">VIP</option>
-                                <option {% if registro.cBrazalete == 5 %}selected{% endif %} value="5"value="5">Artista</option>
-                                <option {% if registro.cBrazalete == 6 %}selected{% endif %} value="6"value="6">Comunicación</option>
-                            </Select>
-                        </td>
-                        <td>
-                            <input style="display: none;" type="text" name="id_r" id="id_r" value="{{ registro.nIdRegistro }}">
-                            <button class="btn btn-primary save-btn" type="submit">Guardar</button>
-                        </td>
-                    </form>
-                </tr>
-                {% endfor %}
-
+                {% endblock %}
+                {% endif %}
             </tbody>
         </table>
     </section>
